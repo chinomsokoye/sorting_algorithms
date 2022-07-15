@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "sort.h"
 
 /**
@@ -10,26 +8,27 @@
  */
 void bubble_sort(int *array, size_t size)
 {
-	unsigned int x, y;
-	int temp;
+	size_t x, new_size = size;
+	int temp, swap;
 
-	if (size < 2)
+	if (array == NULL || size < 2)
 		return;
-	x = 0;
-	y = 0;
-	while (x < size)
+	while (new_size)
 	{
-		while (y < size - x - 1)
+		swap = 0;
+		for (x = 0; x < new_size - 1; x++)
 		{
-			if (array[y] > array[y + 1])
+			if (array[x] > array[x + 1])
 			{
-				temp = array[y];
-				array[y] = array[y + 1];
-				array[y + 1] = temp;
+				temp = array[x + 1];
+				array[x + 1] = array[x];
+				array[x] = temp;
 				print_array(array, size);
+				swap = 1;
 			}
-			y++;
 		}
-		x++;
+		new_size--;
+		if (!swap)
+			break;
 	}
 }
