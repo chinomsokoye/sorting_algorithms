@@ -7,14 +7,14 @@
  */
 size_t list_len(listint_t *list)
 {
-	size_t leng = 0;
+	size_t len = 0;
 
 	while (list)
 	{
-		leng++;
+		len++;
 		list = list->next;
 	}
-	return (leng);
+	return (len);
 }
 
 /**
@@ -24,23 +24,23 @@ size_t list_len(listint_t *list)
  */
 void switch_nodes(listint_t **list, listint_t **p)
 {
-	listint_t *first, *second, *third, *fourth;
+	listint_t *one, *two, *three, *four;
 
-	first = (*p)->prev;
-	second = *p;
-	third = (*p)->next;
-	fourth = (*p)->next->next;
-	second->next = fourth;
-	if (fourth)
-		fourth->prev = second;
-	third->next = second;
-	third->prev = second->prev;
-	if (first)
-		first->prev = third;
+	one = (*p)->prev;
+	two = *p;
+	three = (*p)->next;
+	four = (*p)->next->next;
+	two->next = four;
+	if (four)
+		four->prev = two;
+	three->next = two;
+	three->prev = two->prev;
+	if (one)
+		one->prev = three;
 	else
-		*list = third;
-	second->prev = third;
-	*p = third;
+		*list = three;
+	two->prev = three;
+	*p = three;
 }
 
 /**
